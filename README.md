@@ -37,7 +37,7 @@ Le projet est divisé en deux parties :
 Cloner le projet :
 
 ```bash
-git clone <repo-url>
+git clone git@github.com:Josue-ui582/micro-tasks-tracker.git
 cd micro-tasks-tracker
 ```
 
