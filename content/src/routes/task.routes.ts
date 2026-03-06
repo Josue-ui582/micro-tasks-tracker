@@ -117,4 +117,67 @@ router.get("/", taskController.getTasks);
  */
 router.post("/", taskController.createTasks);
 
+/**
+ * @swagger
+ * /api/tasks/{id}:
+ *   patch:
+ *     summary: Mettre à jour le statut d'une tâche
+ *     description: Permet de modifier le statut d'une tâche existante.
+ *     tags:
+ *       - Tasks
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: Identifiant unique de la tâche
+ *         schema:
+ *           type: string
+ *           example: "c9a8f7e2-3d44-4c12-b111-5a9c6c1b9d5f"
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - status
+ *             properties:
+ *               status:
+ *                 type: string
+ *                 description: Nouveau statut de la tâche
+ *                 enum: [PENDING, COMPLETED]
+ *                 example: PENDING
+ *     responses:
+ *       200:
+ *         description: Statut de la tâche mis à jour avec succès
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 id:
+ *                   type: string
+ *                   example: "c9a8f7e2-3d44-4c12-b111-5a9c6c1b9d5f"
+ *                 title:
+ *                   type: string
+ *                   example: "Apprendre Prisma"
+ *                 priority:
+ *                   type: string
+ *                   enum: [LOW, MEDIUM, HIGH]
+ *                 status:
+ *                   type: string
+ *                   enum: [PENDING, COMPLETED]
+ *                   example: PENDING
+ *                 createdAt:
+ *                   type: string
+ *                   format: date-time
+ *       400:
+ *         description: Requête invalide
+ *       404:
+ *         description: Tâche non trouvée
+ *       500:
+ *         description: Erreur serveur lors de la mise à jour
+ */
+router.patch("/:id", taskController.updateTaskStatus);
+
 module.exports = router;

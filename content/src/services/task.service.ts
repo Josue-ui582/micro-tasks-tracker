@@ -17,9 +17,17 @@ const createTask = async ( title?: string, description?: string, priority?: Prio
     return await prisma.task.create({
         data: {title, priority, description}
     })
+};
+
+const updateTask = async (id?: string, status?: boolean): Promise<Task | null> => {
+    return await prisma.task.update({
+        where: { id },
+        data: { status }
+    })
 }
 
 module.exports = {
     getTasks,
-    createTask
+    createTask,
+    updateTask
 }

@@ -1,5 +1,6 @@
 const taskService = require("../services/task.service");
 import type { Request, Response } from "express";
+import console = require("node:console");
 
 const getTasks = async (req: Request, res: Response) => {
     const {priority, search} = req.query;
@@ -25,7 +26,20 @@ const createTasks = async (req: Request, res: Response) => {
     }
 }
 
+const updateTaskStatus = async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const { status } = req.body;
+    try {
+        const task = await taskService.updateTask(id, status);
+        res.status(201).json(task);
+    } catch (err) {
+        console.error("Prisma Error :", err);
+        res.status(500).json({error: "Failled to update task"});
+    }
+}
+
 module.exports = {
     getTasks,
-    createTasks
+    createTasks,
+    updateTaskStatus
 }
