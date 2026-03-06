@@ -3,6 +3,7 @@ import TaskCard from "@/components/TaskCard";
 import PriorityFilter from "@/components/PriorityFiltered";
 import { Task } from "@/type/task";
 import SearchBar from "@/components/SearchBar";
+import TaskActions from "@/components/TaskActions";
 
 interface Props {
   searchParams: Promise<{
@@ -26,6 +27,7 @@ export default async function TasksPage({ searchParams }: Props) {
       <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mb-4">
         <SearchBar />
         <PriorityFilter />
+        <TaskActions />
       </div>
 
       {tasks.length === 0 ? (
