@@ -1,8 +1,8 @@
-// app/tasks/page.tsx (Fichier Server Component)
 import { getTasks } from "@/lib/api";
 import TaskCard from "@/components/TaskCard";
 import PriorityFilter from "@/components/PriorityFiltered";
 import { Task } from "@/type/task";
+import SearchBar from "@/components/SearchBar";
 
 interface Props {
   searchParams: {
@@ -24,6 +24,7 @@ export default async function TasksPage({ searchParams }: Props) {
       </h1>
 
       <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mb-4">
+        <SearchBar />
         <PriorityFilter />
       </div>
 
