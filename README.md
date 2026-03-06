@@ -19,8 +19,8 @@ L'application permet de :
 
 Le projet est divisé en deux parties :
 
-* **content/** → Backend (Node.js + Express + TypeScript + Tailwind CSS)
-* **web/** → Frontend (Next.js + TypeScript + Postgresql + Prisma)
+* **content/** → Backend (Node.js + Express + TypeScript + Prisma + Postgresql)
+* **web/** → Frontend (Next.js + TypeScript + Tailwind CSS)
 
 ---
 
