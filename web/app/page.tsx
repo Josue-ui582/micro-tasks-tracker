@@ -1,27 +1,43 @@
-import { getTasks } from "@/lib/api";
-import TaskCard from "@/components/TaskCard";
-import PriorityFilter from "@/components/PriorityFiltered";
+import Link from "next/link";
 
-interface Props {
-  searchParams: {
-    priority?: string;
-    search?: string;
-  };
+export default function HomePage() {
+  return (
+    <main className="min-h-screen flex flex-col items-center justify-center bg-gray-50 p-6">
+      <div className="text-center max-w-2xl space-y-6">
+        
+        <h1 className="text-5xl font-extrabold text-gray-900 tracking-tight">
+          Gérez vos tâches avec <span className="text-blue-600">simplicité</span>
+        </h1>
+        
+        <p className="text-lg text-gray-600">
+          Organisez votre quotidien, priorisez vos actions et restez productif. 
+          Une interface épurée pour ne rien oublier.
+        </p>
+
+        <div className="pt-4">
+          <Link
+            href="/tasks"
+            className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg shadow-lg transition-all transform hover:scale-105 active:scale-95"
+          >
+            Accéder à mes tâches
+          </Link>
+        </div>
+      </div>
+
+      <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8 text-center max-w-4xl">
+        <FeatureCard title="Organisation" description="Triez vos tâches par priorité (Haute, Moyenne, Basse)." />
+        <FeatureCard title="Recherche Rapide" description="Trouvez instantanément la tâche qu'il vous faut." />
+        <FeatureCard title="Performance" description="Une interface fluide et optimisée pour Next.js 15." />
+      </div>
+    </main>
+  );
 }
 
-export default async function TasksPage({ searchParams }: Props) {
-  const tasks = await getTasks(searchParams.priority, searchParams.search);
-
+function FeatureCard({ title, description }: { title: string; description: string }) {
   return (
-    <div className="w-full h-screen">
-      <h1 className="text-2xl text-center font-extrabold my-4">Application de gestion de tâche</h1>
-
-      <PriorityFilter />
-      <div className="grid grid-cols-4 border p-2 m-4 rounded-lg border-gray-200">
-        {tasks.map((task) => (
-          <TaskCard key={task.id} task={task} />
-        ))}
-      </div>
+    <div className="p-6 bg-white rounded-xl shadow-sm border border-gray-100">
+      <h3 className="text-xl font-bold mb-2">{title}</h3>
+      <p className="text-gray-500 text-sm">{description}</p>
     </div>
   );
 }
