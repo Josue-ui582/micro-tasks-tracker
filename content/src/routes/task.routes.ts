@@ -53,11 +53,11 @@ const router = Router();
  *         description: Erreur lors de la récupération des données
  */
 
-router.get("/api/tasks", taskController.getTasks);
+router.get("/", taskController.getTasks);
 
 /**
  * @swagger
- * /api/task:
+ * /api/tasks:
  *   post:
  *     summary: Créer une nouvelle tâche
  *     description: Permet d'ajouter une nouvelle tâche avec un titre, une description et un niveau de priorité.
