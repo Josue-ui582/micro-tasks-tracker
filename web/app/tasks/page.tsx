@@ -5,15 +5,15 @@ import { Task } from "@/type/task";
 import SearchBar from "@/components/SearchBar";
 
 interface Props {
-  searchParams: {
+  searchParams: Promise<{
     priority?: string;
     search?: string;
-  };
+  }>;
 }
 
 export default async function TasksPage({ searchParams }: Props) {
-  const priority = searchParams.priority;
-  const search = searchParams.search;
+  const priority = (await searchParams).priority;
+  const search = (await searchParams).search;
   
   const tasks = await getTasks(priority as any, search);
 
