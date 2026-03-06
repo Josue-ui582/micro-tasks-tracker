@@ -13,9 +13,9 @@ const getTasks = async (priority?: Priority, search?: string): Promise<Task[]> =
   });
 };
 
-const createTask = async ( title?: string, description?: string, priority?: Priority): Promise<Task[]> => {
+const createTask = async ( title?: string, description?: string, priority?: Priority): Promise<Task> => {
     return await prisma.task.create({
-        data: {title, priority, description}
+        data: {title, description, priority}
     })
 };
 

@@ -19,7 +19,7 @@ export async function getTasks(priority?: string, search?: string): Promise<Task
   return res.json();
 }
 
-export async function createTask(title: string, description: string, priority: Priority): Promise<Task[]> {
+export async function createTask(title: string, description: string, priority: Priority): Promise<Task> {
   const res = await fetch(API_URL, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
