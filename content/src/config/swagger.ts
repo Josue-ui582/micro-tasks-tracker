@@ -10,7 +10,7 @@ const options: swaggerJSDoc.Options = {
     },
     servers: [
       {
-        url: 'http://localhost:6000',
+        url: 'http://localhost:5000',
         description: 'Micro Tasks Tracker Api Documentation'
       },
     ],

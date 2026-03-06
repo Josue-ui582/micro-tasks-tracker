@@ -18,7 +18,7 @@ model Task {
   title     String
   priority  Priority
   description String
-  completed Boolean  @default(false)
+  status    Status   @default(PENDING)
   createdAt DateTime @default(now())
 }
 
@@ -26,4 +26,9 @@ enum Priority {
   low
   medium
   high
+}
+
+enum Status {
+  PENDING
+  COMPLETED
 }
