@@ -1,6 +1,6 @@
 export type Priority = "LOW" | "MEDIUM" | "HIGH";
 
-export type Status = "PENDING" | "COMPLETED";
+export type Status = "En cours" | "Terminée";
 
 export interface Task {
   id: string;

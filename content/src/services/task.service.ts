@@ -1,5 +1,11 @@
 import type { Task, Priority } from "@prisma/client";
+import Status = require("@prisma/client");
 const prisma = require("../lib/prisma");
+
+const statusMap = {
+  "En cours": Status.Status.PENDING,
+  "Terminée": Status.Status.COMPLETED
+}
 
 const getTasks = async (priority?: Priority, search?: string): Promise<Task[]> => {
   return await prisma.task.findMany({
@@ -19,12 +25,27 @@ const createTask = async ( title?: string, description?: string, priority?: Prio
     })
 };
 
-const updateTask = async (id?: string, status?: boolean): Promise<Task | null> => {
-    return await prisma.task.update({
-        where: { id },
-        data: { status }
-    })
-}
+const updateTask = async (id : string, statusFromUI: string) => {
+  const statusMap: Record<string, string> = {
+    "En cours": "En_cours",
+    "Terminée": "Terminee"
+  };
+
+  const prismaStatus = statusMap[statusFromUI];
+
+  if (!prismaStatus) {
+    throw new Error(`Le statut "${statusFromUI}" n'est pas reconnu. Utilisez "En cours" ou "Terminée".`);
+  }
+
+  return await prisma.task.update({
+    where: { 
+      id: id 
+    },
+    data: { 
+      status: prismaStatus
+    }
+  });
+};
 
 module.exports = {
     getTasks,
