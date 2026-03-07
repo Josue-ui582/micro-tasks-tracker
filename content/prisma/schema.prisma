@@ -18,17 +18,17 @@ model Task {
   title     String
   priority  Priority
   description String
-  status    Status   @default(PENDING)
+  status Status @default(En_cours)
   createdAt DateTime @default(now())
 }
 
 enum Priority {
-  LOW
-  MEDIUM
-  HIGH
+  low
+  medium
+  high
 }
 
 enum Status {
-  PENDING
-  COMPLETED
+  En_cours  @map("En cours")
+  Terminee  @map("Terminée")
 }

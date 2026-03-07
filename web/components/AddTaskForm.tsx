@@ -8,12 +8,12 @@ interface Props {
   onTaskAdded: () => void;
 }
 
-const priorities: Priority[] = ["LOW", "MEDIUM", "HIGH"];
+const priorities: Priority[] = ["low", "medium", "high"];
 
 export default function AddTaskForm({ onTaskAdded }: Props) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [priority, setPriority] = useState<Priority>("LOW");
+  const [priority, setPriority] = useState<Priority>("low");
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -25,7 +25,7 @@ export default function AddTaskForm({ onTaskAdded }: Props) {
       await createTask(title, description, priority);
       setTitle("");
       setDescription("");
-      setPriority("LOW");
+      setPriority("low");
       onTaskAdded();
     } catch (err) {
       console.error(err);
