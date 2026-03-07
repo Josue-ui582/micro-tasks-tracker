@@ -82,8 +82,8 @@ router.get("/", taskController.getTasks);
  *                 example : Cette tâche consiste à apprendre les notion avancées du Prisma
  *               priority:
  *                 type: string
- *                 enum: [Low, Medium, High]
- *                 example: "Medium"
+ *                 enum: [low, medium, high]
+ *                 example: "medium"
  *     responses:
  *       201:
  *         description: Tâche créée avec succès
@@ -103,10 +103,10 @@ router.get("/", taskController.getTasks);
  *                    example : Cette tâche consiste à apprendre les notion avancées du Prisma
  *                 priority:
  *                   type: string
- *                   enum: [Low, Medium, High]
- *                 completed:
+ *                   enum: [low, ledium, high]
+ *                 status:
  *                   type: string
- *                   example: false
+ *                   example: En_cours
  *                 createdAt:
  *                   type: string
  *                   format: date-time
