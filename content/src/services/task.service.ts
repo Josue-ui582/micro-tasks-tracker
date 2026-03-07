@@ -2,11 +2,6 @@ import type { Task, Priority } from "@prisma/client";
 import Status = require("@prisma/client");
 const prisma = require("../lib/prisma");
 
-const statusMap = {
-  "En cours": Status.Status.PENDING,
-  "Terminée": Status.Status.COMPLETED
-}
-
 const getTasks = async (priority?: Priority, search?: string): Promise<Task[]> => {
   return await prisma.task.findMany({
     where: {

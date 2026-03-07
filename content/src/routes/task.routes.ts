@@ -103,10 +103,10 @@ router.get("/", taskController.getTasks);
  *                    example : Cette tâche consiste à apprendre les notion avancées du Prisma
  *                 priority:
  *                   type: string
- *                   enum: [low, medium, high]
- *                 completed:
- *                   type: boolean
- *                   example: false
+ *                   enum: [low, ledium, high]
+ *                 status:
+ *                   type: string
+ *                   example: En_cours
  *                 createdAt:
  *                   type: string
  *                   format: date-time

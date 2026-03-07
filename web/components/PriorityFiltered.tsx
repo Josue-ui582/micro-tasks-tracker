@@ -2,7 +2,7 @@
 
 import { useRouter, useSearchParams } from "next/navigation";
 
-const filtre = ["LOW", "MEDIUM", "HIGH"]
+const filtre = ["low", "medium", "high"]
 
 export default function PriorityFilter() {
   const router = useRouter();

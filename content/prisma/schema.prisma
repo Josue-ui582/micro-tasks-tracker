@@ -23,9 +23,9 @@ model Task {
 }
 
 enum Priority {
-  LOW
-  MEDIUM
-  HIGH
+  low
+  medium
+  high
 }
 
 enum Status {
