@@ -1,4 +1,4 @@
-export type Priority = "Low" | "Medium" | "High";
+export type Priority = "low" | "medium" | "high";
 
 export type Status = "En cours" | "Terminée";
 
