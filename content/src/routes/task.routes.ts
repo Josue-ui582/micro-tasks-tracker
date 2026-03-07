@@ -145,8 +145,8 @@ router.post("/", taskController.createTasks);
  *               status:
  *                 type: string
  *                 description: Nouveau statut de la tâche
- *                 enum: [PENDING, COMPLETED]
- *                 example: PENDING
+ *                 enum: [En_cours, Terminee]
+ *                 example: En cours
  *     responses:
  *       200:
  *         description: Statut de la tâche mis à jour avec succès
@@ -163,11 +163,11 @@ router.post("/", taskController.createTasks);
  *                   example: "Apprendre Prisma"
  *                 priority:
  *                   type: string
- *                   enum: [LOW, MEDIUM, HIGH]
+ *                   enum: [low, medium, high]
  *                 status:
  *                   type: string
- *                   enum: [PENDING, COMPLETED]
- *                   example: PENDING
+ *                   enum: [En_cours, Terminee]
+ *                   example: En_cours
  *                 createdAt:
  *                   type: string
  *                   format: date-time
