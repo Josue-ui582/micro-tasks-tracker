@@ -1,4 +1,5 @@
 import { Task, Priority } from "@/type/task";
+import { Status } from "@/type/task";
 
 const API_URL = "http://localhost:5000/api/tasks";
 
@@ -28,6 +29,23 @@ export async function createTask(title: string, description: string, priority: P
 
   if (!res.ok) {
     throw new Error("Erreur lors de la création de la tâche");
+  }
+
+  return res.json();
+};
+
+export async function updateTaskStatus(id: string, status: Status): Promise<Task> {
+  const res = await fetch(`${API_URL}/${id}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ status }),
+  });
+
+  if (!res.ok) {
+    const errorData = await res.json();
+    throw new Error(errorData.error || "Erreur lors de la mise à jour");
   }
 
   return res.json();
