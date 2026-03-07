@@ -59,8 +59,10 @@ export default function TaskCard({ task }: { task: Task }) {
         </div>
       )}
 
-      <p>Priority: {task.priority}</p>
-      <p>Status: <span className="font-bold">{currentStatus}</span></p>
+      <p><span className="text-lg font-bold">Description</span>: {task.description}</p>
+
+      <p><span className="text-lg font-bold">Priorité</span>: {task.priority}</p>
+      <p><span className="text-lg font-bold">Statut</span>: <span className="font-bold">{currentStatus}</span></p>
     </div>
   );
 }
