@@ -17,14 +17,14 @@ export default function TaskActions() {
     <div className="w-full sm:w-auto">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full sm:w-auto bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition"
+        className="w-full sm:w-auto bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition cursor-pointer"
       >
         {isOpen ? "Annuler" : "+ Créer une tâche"}
       </button>
 
       {isOpen && (
-        <div className="mt-4 p-4 border rounded-lg shadow-md bg-white absolute right-0 top-10">
-          <AddTaskForm onTaskAdded={handleTaskAdded} />
+        <div className="p-4 rounded-lg hover:shadow-lg bg-white absolute right-0 top-10">
+          <AddTaskForm onTaskAdded={handleTaskAdded} onTaskClosed={() => setIsOpen(!isOpen)} />
         </div>
       )}
     </div>
