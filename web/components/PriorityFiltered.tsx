@@ -10,12 +10,7 @@ export default function PriorityFilter() {
 
   const handleChange = (priority: string) => {
     const query = new URLSearchParams(params.toString());
-
-    if (priority === "ALL") {
-      query.delete("priority");
-    } else {
-      query.set("priority", priority);
-    }
+    query.set("priority", priority);
 
     router.push(`/tasks?${query.toString()}`);
   };

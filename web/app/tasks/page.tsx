@@ -2,7 +2,7 @@ import { getTasks } from "@/lib/api";
 import TaskCard from "@/components/TaskCard";
 import PriorityFilter from "@/components/PriorityFiltered";
 import { Task } from "@/type/task";
-import SearchBar from "@/components/SearchBar";
+import SearchBar from "@/components/ui/SearchBar";
 import TaskActions from "@/components/TaskActions";
 
 interface Props {

@@ -6,11 +6,12 @@ import { createTask } from "@/lib/api";
 
 interface Props {
   onTaskAdded: () => void;
+  onTaskClosed: () => void;
 }
 
 const priorities: Priority[] = ["low", "medium", "high"];
 
-export default function AddTaskForm({ onTaskAdded }: Props) {
+export default function AddTaskForm({ onTaskAdded, onTaskClosed }: Props) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [priority, setPriority] = useState<Priority>("low");
@@ -37,9 +38,10 @@ export default function AddTaskForm({ onTaskAdded }: Props) {
 
   return (
     <form
-      className="flex flex-col gap-3 p-4 bg-white border border-gray-200 rounded-lg shadow-sm mb-6"
+      className="flex flex-col gap-3 p-5 bg-white mb-6 relative"
       onSubmit={handleSubmit}
     >
+      <span className="p-2 rounded-lg text-white bg-blue-700 font-bold cursor-pointer top-0 right-0 absolute" onClick={onTaskClosed}>X</span>
       <input
         type="text"
         placeholder="Titre de la tâche..."
@@ -71,7 +73,7 @@ export default function AddTaskForm({ onTaskAdded }: Props) {
 
         <button
           type="submit"
-          className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded transition-colors disabled:bg-gray-400"
+          className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded transition-colors disabled:bg-gray-400 cursor-pointer"
           disabled={loading}
         >
           {loading ? "..." : "Ajouter"}
