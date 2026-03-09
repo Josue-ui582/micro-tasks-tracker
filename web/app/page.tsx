@@ -1,4 +1,6 @@
 import Link from "next/link";
+import FeatureCard from "@/components/ui/FeatureCard";
+import { cardData } from "@/data/cardData";
 
 export default function HomePage() {
   return (
@@ -25,19 +27,12 @@ export default function HomePage() {
       </div>
 
       <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8 text-center max-w-4xl">
-        <FeatureCard title="Organisation" description="Triez vos tâches par priorité (Haute, Moyenne, Basse)." />
-        <FeatureCard title="Recherche Rapide" description="Trouvez instantanément la tâche qu'il vous faut." />
-        <FeatureCard title="Performance" description="Une interface fluide et optimisée pour Next.js 15." />
+        {
+          cardData.map((cardItem) => (
+            <FeatureCard key={cardItem.title} title={cardItem.title} description={cardItem.description} />
+          ))
+        }
       </div>
     </main>
-  );
-}
-
-function FeatureCard({ title, description }: { title: string; description: string }) {
-  return (
-    <div className="p-6 bg-white rounded-xl shadow-sm border border-gray-100">
-      <h3 className="text-xl font-bold mb-2">{title}</h3>
-      <p className="text-gray-500 text-sm">{description}</p>
-    </div>
   );
 }
