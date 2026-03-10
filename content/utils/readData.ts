@@ -1,17 +1,16 @@
-const fs = require("fs");
+const fs = require("fs").promises;
 const path = require("path");
-import type { Task } from "@prisma/client";
-
 
 const FILE_PATH = path.join(__dirname, "../data.json");
 
-const readData = async (): Promise<Task[]> => {
+const readData = async () => {
   try {
     const content = await fs.readFile(FILE_PATH, "utf-8");
+    if (!content || content.trim() === "") return [];
     return JSON.parse(content);
   } catch (error) {
     return [];
   }
 };
 
-module.exports = readData;
+module.exports = { readData };

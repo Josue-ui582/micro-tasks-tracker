@@ -1,9 +1,9 @@
 import type { Priority, Task } from "@prisma/client";
 const fs = require("fs/promises")
 const path = require("path");
-const readData = require("../../utils/readData")
+const { readData } = require("../../utils/readData");
 
-const FILE_PATH = path.join(__dirname, "../data.json");
+const FILE_PATH = path.join(__dirname, "../../data.json");
 
 const getTasks = async (priority?: Priority, search?: string): Promise<Task[]> => {
   const tasks: Task[] = await readData();
@@ -22,7 +22,7 @@ const createTask = async (title: string, description: string, priority: Priority
     title,
     description: description,
     priority,
-    status: "En_cours" as any,
+    status: "En cours" as any,
     createdAt: new Date(),
     updatedAt: new Date()
   } as Task;
