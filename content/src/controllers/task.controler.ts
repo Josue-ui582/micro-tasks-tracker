@@ -3,11 +3,12 @@ import type { Request, Response } from "express";
 import console = require("node:console");
 
 const getTasks = async (req: Request, res: Response) => {
-    const {priority, search} = req.query;
+    const {priority, search, status} = req.query;
     try {
         const tasks = await taskService.getTasks(
             priority as any,
-            search as string | undefined
+            search as string | undefined,
+            status as string
         );
         res.json(tasks);
     } catch (error) {

@@ -1,49 +1,73 @@
-import type { Task, Priority } from "@prisma/client";
-import Status = require("@prisma/client");
-const prisma = require("../lib/prisma");
+import type { Priority, Task } from "@prisma/client";
+const fs = require("fs/promises")
+const path = require("path");
+const { readData } = require("../../utils/readData");
+const { withLock } = require("../../utils/withLock");
 
-const getTasks = async (priority?: Priority, search?: string): Promise<Task[]> => {
-  return await prisma.task.findMany({
-    where: {
-      priority: priority,
-      title: search ? { contains: search, mode: "insensitive" } : undefined
-    },
-    orderBy: {
-      createdAt: "desc"
-    }
+const FILE_PATH = path.join(__dirname, "../../data.json");
+
+const getTasks = async (priority?: Priority, search?: string, status?: string): Promise<Task[]> => {
+  const tasks: Task[] = await readData();
+  
+  return tasks
+    .filter(t => {
+      const matchPriority = !priority || t.priority === priority;
+      const matchSearch = !search || t.title.toLowerCase().includes(search.toLowerCase());
+      const matchStatus = !status || t.status === status;
+      return matchPriority && matchSearch && matchStatus;
+    })
+    .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+};
+
+
+const createTask = async (title: string, description: string, priority: Priority): Promise<Task> => {
+  return await withLock(async () => {
+    const tasks: Task[] = await readData();
+
+    const newTask: Task = {
+      id: Math.random().toString(36).substring(2, 9),
+      title,
+      description: description,
+      priority,
+      status: "En cours" as any,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    } as Task;
+
+    tasks.push(newTask);
+    await fs.writeFile(FILE_PATH, JSON.stringify(tasks, null, 2));
+    return newTask;
   });
 };
 
-const createTask = async ( title?: string, description?: string, priority?: Priority): Promise<Task> => {
-    return await prisma.task.create({
-        data: {title, description, priority}
-    })
-};
-
-const updateTask = async (id : string, statusFromUI: string) => {
-  const statusMap: Record<string, string> = {
+const updateTask = async (id: string, statusFromUI: string): Promise<Task> => {
+  const statusMap: Record<string, any> = {
     "En cours": "En_cours",
     "Terminée": "Terminee"
   };
 
   const prismaStatus = statusMap[statusFromUI];
+  if (!prismaStatus) throw new Error(`Le statut "${statusFromUI}" n'est pas reconnu.`);
 
-  if (!prismaStatus) {
-    throw new Error(`Le statut "${statusFromUI}" n'est pas reconnu. Utilisez "En cours" ou "Terminée".`);
-  }
+  return await withLock(async () => {
+    const tasks: Task[] = await readData();
+    const index = tasks.findIndex(t => t.id === id);
 
-  return await prisma.task.update({
-    where: { 
-      id: id 
-    },
-    data: { 
-      status: prismaStatus
-    }
+    if (index === -1) throw new Error("Task not found");
+
+    tasks[index] = { 
+      ...tasks[index], 
+      status: prismaStatus, 
+      updatedAt: new Date() 
+    } as Task;
+
+    await fs.writeFile(FILE_PATH, JSON.stringify(tasks, null, 2));
+    return tasks[index];
   });
 };
 
 module.exports = {
-    getTasks,
-    createTask,
-    updateTask
-}
+  getTasks,
+  createTask,
+  updateTask
+};

@@ -12,12 +12,14 @@ export default function TaskCard({ task }: { task: Task }) {
   const statusOptions: Status[] = ["En cours", "Terminée"];
 
   const handleStatusChange = async (newStatus: Status) => {
+    const previousStatus = currentStatus;
+    setCurrentStatus(newStatus);
+    setShowMenu(false);
     try {
       await updateTaskStatus(task.id, newStatus);
-      setCurrentStatus(newStatus);
-      setShowMenu(false);
     } catch (err) {
-      alert("Erreur lors de la mise à jour !");
+      setCurrentStatus(previousStatus);
+      alert("Erreur lors de la mise à jour ! Le statut a été rétabli.");
     }
   };
 

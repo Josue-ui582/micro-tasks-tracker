@@ -1,5 +1,6 @@
 import Router = require("express");
 const taskController = require("../controllers/task.controler");
+const rateLimit = require("../middleware/rateLimit")
 
 const router = Router();
 
@@ -115,7 +116,7 @@ router.get("/", taskController.getTasks);
  *       500:
  *         description: Erreur serveur lors de la création de la tâche
  */
-router.post("/", taskController.createTasks);
+router.post("/", rateLimit, taskController.createTasks);
 
 /**
  * @swagger
