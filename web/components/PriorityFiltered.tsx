@@ -1,12 +1,27 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect } from "react";
 
 const filtre = ["low", "medium", "high"]
 
 export default function PriorityFilter() {
   const router = useRouter();
   const params = useSearchParams();
+  const currentPriority = params.get("priority");
+
+  useEffect(() => {
+    if (currentPriority) {
+      localStorage.setItem("lastPriority", currentPriority);
+    }else {
+      const savedPriority = localStorage.getItem("lastPriority");
+      if (savedPriority) {
+        const query = new URLSearchParams(params.toString());
+        query.set("priority", savedPriority);
+        router.replace(`/tasks?${query.toString()}`);
+      }
+    }
+  }, [currentPriority, router, params])
 
   const handleChange = (priority: string) => {
     const query = new URLSearchParams(params.toString());
