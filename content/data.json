@@ -16,5 +16,14 @@
     "status": "En cours",
     "createdAt": "2026-03-10T12:46:27.520Z",
     "updatedAt": "2026-03-10T12:46:27.520Z"
+  },
+  {
+    "id": "ufslfqa",
+    "title": "Créer la page de connexion",
+    "description": "Implémenter la page de connexion pour les utilisateurs",
+    "priority": "medium",
+    "status": "En cours",
+    "createdAt": "2026-03-10T16:02:31.980Z",
+    "updatedAt": "2026-03-10T16:02:31.980Z"
   }
 ]
