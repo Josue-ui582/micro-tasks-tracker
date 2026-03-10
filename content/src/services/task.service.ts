@@ -6,14 +6,19 @@ const { withLock } = require("../../utils/withLock");
 
 const FILE_PATH = path.join(__dirname, "../../data.json");
 
-const getTasks = async (priority?: Priority, search?: string): Promise<Task[]> => {
+const getTasks = async (priority?: Priority, search?: string, status?: string): Promise<Task[]> => {
   const tasks: Task[] = await readData();
   
   return tasks
-    .filter(t => !priority || t.priority === priority)
-    .filter(t => !search || t.title.toLowerCase().includes(search.toLowerCase()))
+    .filter(t => {
+      const matchPriority = !priority || t.priority === priority;
+      const matchSearch = !search || t.title.toLowerCase().includes(search.toLowerCase());
+      const matchStatus = !status || t.status === status;
+      return matchPriority && matchSearch && matchStatus;
+    })
     .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
 };
+
 
 const createTask = async (title: string, description: string, priority: Priority): Promise<Task> => {
   return await withLock(async () => {
