@@ -20,10 +20,13 @@ const createTasks = async (req: Request, res: Response) => {
     const { title, description, priority } = req.body;
     try {
         const task = await taskService.createTask(title, description, priority);
-        res.status(201).json(task);
+        if (res.headersSent) return;
+        return res.status(201).json(task);
     } catch (err ) {
         console.error("Erreur Prisma :", err);
-        res.status(500).json({ error: "Failed to create task" });
+        if (!res.headersSent) {
+            return res.status(500).json({ error: "Failed to create task" });
+        }
     }
 }
 
