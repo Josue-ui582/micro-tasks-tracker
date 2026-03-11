@@ -26,7 +26,6 @@ const rateLimit = (req: Request, res: Response, next: NextFunction) => {
     }
 
     requests[clientId].push(now);
-    console.log(requests[clientId]);
 
     next();
 };
