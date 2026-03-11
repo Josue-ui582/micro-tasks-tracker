@@ -23,7 +23,7 @@ export default function TaskActions() {
       </button>
 
       {isOpen && (
-        <div className="p-4 rounded-lg hover:shadow-lg bg-white absolute right-0 top-10">
+        <div className="p-4 rounded-lg hover:shadow-lg bg-white absolute right-0 top-10 z-50">
           <AddTaskForm onTaskAdded={handleTaskAdded} onTaskClosed={() => setIsOpen(!isOpen)} />
         </div>
       )}

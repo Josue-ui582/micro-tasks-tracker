@@ -1,5 +1,5 @@
-import { Task, Priority } from "@/type/task";
-import { Status } from "@/type/task";
+import { Task, Priority } from "@/src/types/task";
+import { Status } from "@/src/types/task";
 
 const API_URL = "http://localhost:5000/api/tasks";
 

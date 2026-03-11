@@ -1,8 +1,8 @@
 "use client"
 
-import { Task, Status } from "@/type/task";
+import { Task, Status } from "@/src/types/task";
 import { useState, useRef, useEffect } from "react";
-import { updateTaskStatus } from "@/lib/api";
+import { updateTaskStatus } from "@/src/lib/api";
 
 export default function TaskCard({ task }: { task: Task }) {
   const [currentStatus, setCurrentStatus] = useState(task.status);
