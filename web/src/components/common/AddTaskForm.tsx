@@ -89,7 +89,7 @@ export default function AddTaskForm({ onTaskAdded, onTaskClosed }: Props) {
           <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400 ml-1">Description</label>
           <textarea
             name="description"
-            placeholder="Ajoutez des détails (optionnel)..."
+            placeholder="Ajoutez des détails"
             className="w-full bg-slate-50 border-none rounded-xl px-4 py-3.5 text-slate-900 placeholder:text-slate-400 focus:ring-2 focus:ring-indigo-500 transition-all font-medium min-h-30 resize-none"
             value={form.description}
             onChange={handleChange}
