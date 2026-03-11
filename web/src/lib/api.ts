@@ -13,10 +13,11 @@ const getOrCreateId = (): string => {
   return id;
 }
 
-export const getTasks = async (priority?: string, search?: string): Promise<Task[]> => {
+export const getTasks = async (priority?: string, search?: string, status?: string): Promise<Task[]> => {
   const params = new URLSearchParams();
   if (priority) params.append("priority", priority);
   if (search) params.append("search", search);
+  if (status) params.append("status", status);
 
   try {
     const res = await fetch(`${API_URL}?${params.toString()}`, {
