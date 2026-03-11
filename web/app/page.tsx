@@ -1,6 +1,6 @@
 import Link from "next/link";
-import FeatureCard from "@/components/ui/FeatureCard";
-import { cardData } from "@/data/cardData";
+import FeatureCard from "@/src/components/ui/FeatureCard";
+import { cardData } from "@/src/constants/cardData";
 
 export default function HomePage() {
   return (

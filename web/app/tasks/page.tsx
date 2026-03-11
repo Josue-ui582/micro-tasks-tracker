@@ -1,9 +1,9 @@
-import { getTasks } from "@/lib/api";
-import TaskCard from "@/components/TaskCard";
-import PriorityFilter from "@/components/PriorityFiltered";
-import { Task } from "@/type/task";
-import SearchBar from "@/components/ui/SearchBar";
-import TaskActions from "@/components/TaskActions";
+import { getTasks } from "@/src/lib/api";
+import TaskCard from "@/src/components/TaskCard";
+import PriorityFilter from "@/src/components/PriorityFiltered";
+import { Task } from "@/src/types/task";
+import SearchBar from "@/src/components/ui/SearchBar";
+import TaskActions from "@/src/components/TaskActions";
 
 interface Props {
   searchParams: Promise<{
