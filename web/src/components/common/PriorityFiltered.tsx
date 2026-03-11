@@ -2,6 +2,7 @@
 
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect } from "react";
+import { DeleteIcon } from "../icon/deleteIcon";
 
 const filtre = ["low", "medium", "high"];
 
@@ -59,7 +60,6 @@ export default function PriorityFilter() {
               ${getStyle(f)}
             `}
           >
-            {/* Indicateur visuel (point) */}
             <span className={`w-1.5 h-1.5 rounded-full ${
               f === "high" ? "bg-rose-500" : f === "medium" ? "bg-amber-500" : "bg-emerald-500"
             }`} />
@@ -79,7 +79,7 @@ export default function PriorityFilter() {
           className="ml-1 p-2 text-slate-400 hover:text-rose-500 transition-colors"
           title="Effacer le filtre"
         >
-          <svg xmlns="http://www.w3.org" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+          <DeleteIcon />
         </button>
       )}
     </div>
