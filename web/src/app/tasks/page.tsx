@@ -1,4 +1,4 @@
-import { getTasks } from "@/src/lib/api";
+import { getTasks } from "@/src/services/api";
 import TaskCard from "@/src/components/common/TaskCard";
 import PriorityFilter from "@/src/components/common/PriorityFiltered";
 import { Task } from "@/src/types/task";

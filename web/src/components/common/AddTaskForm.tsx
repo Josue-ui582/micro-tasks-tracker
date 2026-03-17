@@ -2,8 +2,8 @@
 
 import { useState, useRef } from "react";
 import { Priority } from "@/src/types/task";
-import { createTask } from "@/src/lib/api";
-import { taskFormSchema } from "@/src/lib/auth-schema";
+import { createTask } from "@/src/services/api";
+import { taskFormSchema } from "@/src/services/auth-schema";
 import * as yup from "yup";
 import { CloseIcon } from "../icon/closeIcon";
 

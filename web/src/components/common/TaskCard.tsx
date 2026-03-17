@@ -2,7 +2,7 @@
 
 import { Task, Status } from "@/src/types/task";
 import { useState, useRef, useEffect } from "react";
-import { updateTaskStatus } from "@/src/lib/api";
+import { updateTaskStatus } from "@/src/services/api";
 import { CirculeIcon } from "../icon/circuleIcon";
 
 export default function TaskCard({ task }: { task: Task }) {
